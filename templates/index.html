@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | Credit Management App{% endblock title %}
+{% block homeactive %}active{% endblock homeactive %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1 class="display-4">Hello, welcome to the credit manager!</h1>
+    <p class="lead">Transfer the credits of users from one to another by a single click!</p>
+    
+    <hr class="my-4">
+    <p class="lead">Help: Credits are a sort of points which can be transfered from one user to another.</p>
+    <a class="btn btn-primary btn-lg" href="/transfer_credit" role="button">Start</a>
+  </div>
+{% endblock body %}
+
+
+

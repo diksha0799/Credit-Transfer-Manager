@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Transfer Credit | Credit Managment App{% endblock title %}
+{% block transferactive %}active{% endblock transferactive %}
+
+{% block style %}
+<style>
+    @media only screen and (min-width: 768px)   {
+        .table {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+{% if status %}
+<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+    <strong>Success!</strong> {{credit}} credits have been sent to {{recipient}} from {{name}}
+{% else %}
+<div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+    <strong>Error:</strong> Cannot send {{credit}} credits as {{name}} doesn't have sufficient credits to send
+{% endif %}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="container my-3">
+    <h1 class="text-center">User List</h1>
+    <div class="container my-3 mt-3 userlist">
+        <table class="table my-5 mb-5 pb-5">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Credit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td><a href="/user/{{user.name}}">{{user.name}}</a></td>
+                    <td>{{user.current_credit}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock body %}

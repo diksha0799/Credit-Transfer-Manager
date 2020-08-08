@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{user.name}} | Credit Managment App{% endblock title %}
+{% block transferactive %}active{% endblock transferactive %}
+
+{% block style %}
+<style></style>
+{% endblock style %}
+
+{% block body %}
+<div class="card m-3">
+    <div class="card-body">
+        <h2>{{user.name}}</h2>
+        <hr>
+        <h3 class="my-3">Details:</h3>
+        <p>Email: {{user.email}}</p>
+        <h5>Current Credits: {{user.current_credit}}</h5>
+        <div class="container text-center">
+            <button class="btn btn-primary my-3" type="button" data-toggle="collapse" data-target="#details"
+                aria-expanded="false" aria-controls="collapseExample" title="Transfer credits now!">
+                Transfer Credits To Another User
+            </button>
+            <div class="collapse my-2 userform" id="details">
+                <div class="card card-body">
+                    <form action="/user/{{user.name}}/confirmation" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right">Recipient User<span></span>:</label>
+                            <select required class="form-control col-sm-8" id="recipient" name="recipient">
+                                <option selected></option>
+                                {% for usr in users %}
+                                {% ifnotequal usr.name user.name %}
+                                <option>{{usr.name}}</option>
+                                {% endifnotequal %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label text-right">Number of Credits<span></span>:</label>
+                            <input class="col-sm-8" type="number" id="credit" name="credit" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
