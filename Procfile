@@ -1,1 +1,1 @@
-web: gunicorn credit.wsgi 
+web: gunicorn creditTransferManager.wsgi 
