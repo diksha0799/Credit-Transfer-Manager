@@ -25,7 +25,7 @@ SECRET_KEY = '*axl8v&8826-e7mr4l7ef4akpv9qn3ssrw2g!-o7-c^l^w@zo4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [*]
+ALLOWED_HOSTS = ['credit-transfer-manager.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
